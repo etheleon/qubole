@@ -15,10 +15,10 @@ class Qubole:
         try:
             self.token = os.environ["QUBOLE_TOKEN"]
         except KeyError:
-            print("Missing Qubole token")
+            print("Qubole Token: MISSING")
         self.api = "https://us.qubole.com/api/v1.3/clusters/{CLUSTERID}/state"
 
-    def state(self, cluster=19436, full=False):
+    def state(self, cluster, full=False):
         """Finds out the state of the cluster"""
         response = requests.get(
             url=self.api.format(CLUSTERID=cluster),
