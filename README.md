@@ -22,3 +22,10 @@ export QUBOLE_TOKEN=<API KEY>
   ```
   qubole toggle --cluster USERNAME
   ```
+
+## Installation
+
+```
+pip install pyqubole
+```
+
