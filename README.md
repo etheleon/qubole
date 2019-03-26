@@ -16,7 +16,6 @@ export QUBOLE_TOKEN=<API KEY>
   qubole state --cluster USERNAME
   ```
 
-
 * Toggle cluster between `UP` and `DOWN` state
 
   ```
@@ -28,4 +27,3 @@ export QUBOLE_TOKEN=<API KEY>
 ```
 pip install pyqubole
 ```
-
