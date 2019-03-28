@@ -31,7 +31,7 @@ class Qubole:
                 print(f"Cluster {cluster} UP")
                 state = True
             elif values["state"] == 'DOWN':
-                print(f"Cluser {cluster} DOWN")
+                print(f"Cluster {cluster} DOWN")
                 state = False
             elif values["state"] == "PENDING":
                 print(f"Cluster {cluster} PENDING")
@@ -54,5 +54,4 @@ class Qubole:
             },
             data=json.dumps({"state": state})
         )
-        print(response.content)
-
+        print(json.loads(response.content))
