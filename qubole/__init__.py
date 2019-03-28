@@ -3,6 +3,7 @@
 """
 import json
 import os
+import pprint
 
 import requests
 
@@ -25,7 +26,7 @@ class Qubole:
 
         values = json.loads(response.content)
         if full:
-            print(values)
+            print(pprint.pprint(values))
         else:
             if values["state"] == 'UP':
                 print(f"Cluster {cluster} UP")
@@ -54,4 +55,4 @@ class Qubole:
             },
             data=json.dumps({"state": state})
         )
-        print(json.loads(response.content))
+        print(json.loads(pprint.pprint(response.content)))
