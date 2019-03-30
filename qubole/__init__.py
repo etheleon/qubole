@@ -7,7 +7,7 @@ import pprint
 
 import requests
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 
 class Qubole:
     """Basic qubole wrapper"""
@@ -43,7 +43,6 @@ class Qubole:
             else:
                 print(f"Cluster {cluster} UNKNOWN")
                 self.active = False
-            return state
 
     def toggle(self, cluster):
         """Toggles the cluster on and off"""
