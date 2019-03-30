@@ -43,6 +43,7 @@ class Qubole:
             else:
                 print(f"Cluster {cluster} UNKNOWN")
                 self.active = False
+            return state
 
     def toggle(self, cluster):
         """Toggles the cluster on and off"""
@@ -57,4 +58,7 @@ class Qubole:
             },
             data=json.dumps({"state": state})
         )
-        print(json.loads(pprint.pprint(response.content)))
+        try:
+            print(json.loads(pprint.pprint(response.content)))
+        except TypeError as e:
+            print(f"Error: {e}")
