@@ -7,6 +7,7 @@ import pprint
 
 import requests
 
+__version__ = "0.1.4"
 
 class Qubole:
     """Basic qubole wrapper"""
@@ -16,6 +17,7 @@ class Qubole:
         except KeyError:
             print("Qubole Token: MISSING")
         self.api = "https://us.qubole.com/api/v1.3/clusters/{CLUSTERID}/state"
+        self.active = None
 
     def state(self, cluster, full=False):
         """Finds out the state of the cluster"""
@@ -30,22 +32,22 @@ class Qubole:
         else:
             if values["state"] == 'UP':
                 print(f"Cluster {cluster} UP")
-                state = True
+                self.active = True
+                print('Ganglia: https://us.qubole.com/ganglia-metrics-{clusterid}/'.format(clusterid = values["cluster_id"]))
             elif values["state"] == 'DOWN':
                 print(f"Cluster {cluster} DOWN")
-                state = False
+                self.active = False
             elif values["state"] == "PENDING":
                 print(f"Cluster {cluster} PENDING")
-                state = False
+                self.active = False
             else:
                 print(f"Cluster {cluster} UNKNOWN")
-                state = False
-            return state
+                self.active = False
 
     def toggle(self, cluster):
         """Toggles the cluster on and off"""
-        active = self.state(cluster)
-        state = "start" if not active else "terminate"
+        self.state(cluster)
+        state = "start" if not self.active else "terminate"
         response = requests.put(
             url=self.api.format(CLUSTERID=cluster),
             headers={

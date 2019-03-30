@@ -16,6 +16,14 @@ export QUBOLE_TOKEN=<API KEY>
   qubole state --cluster USERNAME
   ```
 
+  Example
+
+  ```bash
+  qubole state --cluster wesley
+  Cluster wesley UP
+  Ganglia: https://us.qubole.com/ganglia-metrics-19436/
+  ```
+
 * Toggle cluster between `UP` and `DOWN` state
 
   ```
