@@ -35,3 +35,6 @@ export QUBOLE_TOKEN=<API KEY>
 ```
 pip install pyqubole
 ```
+
+
+# License
