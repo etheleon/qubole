@@ -27,22 +27,26 @@ class Qubole:
         )
 
         values = json.loads(response.content)
-        if full:
-            print(pprint.pprint(values))
-        else:
-            if values["state"] == 'UP':
-                print(f"Cluster {cluster} UP")
-                self.active = True
-                print('Ganglia: https://us.qubole.com/ganglia-metrics-{clusterid}/'.format(clusterid = values["cluster_id"]))
-            elif values["state"] == 'DOWN':
-                print(f"Cluster {cluster} DOWN")
-                self.active = False
-            elif values["state"] == "PENDING":
-                print(f"Cluster {cluster} PENDING")
-                self.active = False
+        try:
+            if full:
+                pprint.pprint(values)
             else:
-                print(f"Cluster {cluster} UNKNOWN")
-                self.active = False
+                if values["state"] == 'UP':
+                    print(f"Cluster {cluster} UP")
+                    self.active = True
+                    print('Ganglia: https://us.qubole.com/ganglia-metrics-{clusterid}/'.format(clusterid = values["cluster_id"]))
+                elif values["state"] == 'DOWN':
+                    print(f"Cluster {cluster} DOWN")
+                    self.active = False
+                elif values["state"] == "PENDING":
+                    print(f"Cluster {cluster} PENDING")
+                    self.active = False
+                else:
+                    print(f"Cluster {cluster} UNKNOWN")
+                    self.active = False
+        except:
+            print(values)
+
 
     def toggle(self, cluster):
         """Toggles the cluster on and off"""
@@ -58,6 +62,6 @@ class Qubole:
             data=json.dumps({"state": state})
         )
         try:
-            print(json.loads(pprint.pprint(response.content)))
+            pprint.pprint(json.loads(response.content))
         except TypeError as e:
             print(f"Error: {e}")
