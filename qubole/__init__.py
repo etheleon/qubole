@@ -22,7 +22,7 @@ class Qubole:
     def info(self, cluster):
         """Finds info of the cluster"""
         response = requests.get(
-            url=self.api.format(CLUSTERID=cluster),
+            url="https://us.qubole.com/api/v1.3/clusters/{CLUSTERID}/".format(CLUSTERID=cluster),
             headers={'X-AUTH-TOKEN': self.token}
         )
         values = json.loads(response.content)
