@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
         name='pyqubole',
-        version='0.1.6',
+        version='0.1.7',
         author='Wesley Goi',
         author_email='picy2k@gmail.com',
         packages=['qubole'],
