@@ -19,6 +19,15 @@ class Qubole:
         self.api = "https://us.qubole.com/api/v1.3/clusters/{CLUSTERID}/state"
         self.active = None
 
+    def info(self, cluster):
+        """Finds info of the cluster"""
+        response = requests.get(
+            url=self.api.format(CLUSTERID=cluster),
+            headers={'X-AUTH-TOKEN': self.token}
+        )
+        values = json.loads(response.content)
+        pprint.pprint(values)
+
     def state(self, cluster, full=False):
         """Finds out the state of the cluster"""
         response = requests.get(
